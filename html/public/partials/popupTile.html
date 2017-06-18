@@ -1,0 +1,87 @@
+<script>
+var timer=null;
+  function showSpinner(message,timeVal)
+  {
+    $("#cover").fadeIn(100);
+    document.getElementById('{{tileID}}_spinner').style.visibility='visible';
+    if(timeVal>0)
+      timer = setTimeout(closeSpinner,timeVal*1000);
+  }
+
+  function closeSpinner() {
+    document.getElementById('{{tileID}}_spinner').style.visibility='hidden';
+    $("#cover").fadeOut(100);
+    if(timer){
+      clearTimeout(timer);
+      timer=null;
+    }
+  }
+
+function showMessage(title,message)
+{
+  $("#cover").fadeIn(100);
+  document.getElementById('message-content-text').innerHTML = message;
+  document.getElementById('message-title-text').innerHTML = title;
+  document.getElementById('{{tileID}}_message').style.visibility='visible';
+}
+
+function closeMessage() {
+  document.getElementById('{{tileID}}_message').style.visibility='hidden';
+  $("#cover").fadeOut(100);
+}
+
+function confirmDialog(message, yesCallback, noCallback) {
+  $("#cover").fadeIn(100);
+  document.getElementById('confirmDialog_text').innerHTML = message;
+  document.getElementById('confirmDialog_title_text').innerHTML = "Confirm";
+  document.getElementById('confirmDialog').style.visibility='visible';
+
+  $('#confirmDialog_Yes').unbind().click(function() {
+    closeDialog();
+    yesCallback();
+  });
+  $('#confirmDialog_No').unbind().click(function() {
+    closeDialog();
+    noCallback();
+  });
+
+}
+
+function closeDialog()
+{
+  $("#cover").fadeOut(100);
+  document.getElementById('confirmDialog').style.visibility='hidden';
+}
+
+</script>
+
+<div class="spinnerTile center unselectable" id={{tileID}}_spinner>
+  <div class="spinner center"></div>
+  <div class="center" style="height:30px;width:130px;font-family: Monospace;font-size: 24px;">Loading...</div>
+</div>
+
+<div class="popup unselectable" id={{tileID}}_message>
+  <div class="popup-title">
+    <div id="message-title-text" style="float:left">{{title}}</div><div style="float:right;padding-right:10px;" onclick="closeMessage()">X</div>
+  </div>
+
+    <div id="message-content-text" class="popup-message">This is a sample1.</div>
+
+    <Input type ="button" Class = "flat_button" style="width:60px;position:absolute;left:40%;bottom:10px" onclick = "closeMessage()" value = "Okay">
+
+</div>
+
+<div class="popup" id='confirmDialog'>
+  <div class="popup-title">
+    <div id="confirmDialog_title_text" style="float:left">{{title}}</div><div style="float:right;padding-right:10px;cursor: pointer" onclick="closeDialog()"><i class="fa fa-times" aria-hidden="true"></i></div>
+  </div>
+
+  <div id="confirmDialog_text" class="popup-message">This is a sample1.</div>
+  <br>
+  <div style="width:150px;position:absolute;left:0;right:0;margin: 0 auto;">
+    <input type='button' class="flat_button" style="width:60px" value='yes' id='confirmDialog_Yes' />
+    <input type='button' class="flat_button" style="width:60px" value='no' id='confirmDialog_No' />
+  </div>
+</div>
+
+<div id="cover"> </div>

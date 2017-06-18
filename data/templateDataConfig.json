@@ -1,0 +1,91 @@
+{"dataConfig":[
+
+  {"name":"bugCountTile", "input":[
+    {"val":"jiraBaseURL","format":"http://jira.<<yourDomain>>:<<port>>/rest/api/2/search?jql="},
+    {"val":"jiraFilterTotalDefects","format":"filter = <<filterNumber>> ORDER BY CREATED &fields=priority&maxResults=1000"}
+  ],
+  "hint":[
+    {"val":"<<yourDomain>>    : Domain name in Jira URL"},
+    {"val":"<<port>>          : port number in Jira URL"},
+    {"val":"<<filterNumber>>  : your Jira filter number[e.g.:10001] - Please make sure if it is public"}
+    ]
+  },
+  {"name":"storyCountTile", "input":[
+    {"val":"jiraBaseURL","format":"http://jira.<<yourDomain>>:<<port>>/rest/api/2/search?jql="},
+    {"val":"jiraFilterTotalDefects","format":"filter = <<filterNumber>> ORDER BY CREATED &fields=status&maxResults=1000"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>    : Domain name in Jira URL"},
+    {"val":"<<port>>          : port number in Jira URL"},
+    {"val":"<<filterNumber>>  : your Jira filter number[e.g.:10001] - Please make sure if it is public"}
+    ]
+  },
+  {"name":"defectSummaryTile", "input":[
+      {"val":"jiraBaseURL","format":"http://jira.<<yourDomain>>:<<port>>/rest/api/2/search?jql="},
+      {"val":"jiraFilterOpenDefects","format":"filter = <<filterNumber>> AND status != Done AND status != Closed AND status != On-hold &fields=key,priority,summary,status,customfield_12400"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>    : Domain name in Jira URL"},
+    {"val":"<<port>>          : port number in Jira URL"},
+    {"val":"<<filterNumber>>  : your Jira filter number[e.g.:10001] - Please make sure if it is public"}
+    ]
+  },
+  {"name":"bambooBuildTile", "input":[
+      {"val":"bambooBaseURL","format":"http://bamboo.<<yourDomain>>:<<port>>/bamboo/rest/api/latest/result/"},
+      {"val":"buildName","format":"<<planName>>"},
+      {"val":"bambooSuffix","format":".json?expand=results.result"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>    : Domain name in Bamboo URL"},
+    {"val":"<<port>>          : port number in Bamboo URL"},
+    {"val":"<<planName>>      : your Bamboo plan name[e.g.:ABC-EFG] - You can open your plan in bamboo and get this from URL"}
+    ]
+  },
+  {"name":"bambooBuildDailyStatsTile", "input":[
+    {"val":"bambooBaseURL","format":"http://bamboo.<<yourDomain>>:<<port>>/bamboo/rest/api/latest/result/"},
+    {"val":"buildName","format":"<<planName>>"},
+    {"val":"bambooSuffix","format":".json?expand=results.result"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>    : Domain name in Bamboo URL"},
+    {"val":"<<port>>          : port number in Bamboo URL"},
+    {"val":"<<planName>>      : your Bamboo plan name[e.g.:ABC-EFG] - You can open your plan in bamboo and get this from URL"}
+    ]
+  },
+  {"name":"bambooTestDailyStatsTile", "input":[
+    {"val":"bambooBaseURL","format":"http://bamboo.<<yourDomain>>:<<port>>/bamboo/rest/api/latest/result/"},
+    {"val":"buildName","format":"<<planName>>"},
+    {"val":"bambooSuffix","format":".json?expand=results.result"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>    : Domain name in Bamboo URL"},
+    {"val":"<<port>>          : port number in Bamboo URL"},
+    {"val":"<<planName>>      : your Bamboo plan name[e.g.:ABC-EFG] - You can open your plan in bamboo and get this from URL"}
+    ]
+  },
+  {"name":"codeQualityTile", "input":[
+      {"val":"sonarCubeBaseURL","format":"http://sonar.<<yourDomain>>:<<port>>"},
+      {"val":"sonarCubeResource","format":"com.<<yourDomain/project1>>:<<yourDomain/project2>>"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>          : Domain name in Sonar URL"},
+    {"val":"<<port>>                : port number in Sonar URL"},
+    {"val":"<<yourDomain/project1>> : abc.gateway.myprj"},
+    {"val":"<<yourDomain/project2>> : abc-gateway-myprj"}
+    ]
+  },
+  {"name":"commitDetailsTile", "input":[
+      {"val":"stashBaseURL","format":"http://stash.<<yourDomain>>:<<port>>/rest/api/1.0/projects/<<yourProject>>/repos/<<subFolder>>/commits"}
+  ],
+    "hint":[
+    {"val":"<<yourDomain>>          : Domain name in Bitbucket URL"},
+    {"val":"<<port>>                : port number in Bitbucket URL"},
+    {"val":"<<yourProject>>         : your Project name in stash. You can navigate to your project in stash and look after 'projects' in URL"},
+    {"val":"<<subFolder>>           : your sub folder name in stash. You can navigate to your project in stash and look after 'repos' in URL"}
+    ]
+  },
+  {"name":"separatorTile", "input":[],
+  "hint":"Hello world"
+  }
+
+  ]}

@@ -1,0 +1,91 @@
+
+
+<script>
+    function toggleSort(tgl)
+    {
+        if ( tgl.checked ) {
+            $( ".sort_widget" ).sortable( "enable" );
+            document.getElementById("id_widgetSortButton").style.visibility = "visible";
+        } else {
+            $( ".sort_widget" ).sortable( "disable" );
+            document.getElementById("id_widgetSortButton").style.visibility = "hidden";
+        }
+    }
+
+    function saveSortedWidgets() {
+        var e = document.getElementById("id_selectDashboard");
+        var strUser = e.options[e.selectedIndex].value;
+        var sendData = {tile:[],dashboardName:strUser};
+        for(i = 0;i<document.getElementById("id_dashboardWidgets").children.length;i++)
+        {
+            sendData.tile.push({name: document.getElementById('id_dashboardWidgets').children[i].id,
+        displayOrder:i});
+        }
+        showSpinner("Please wait...",0);
+        $.ajax({
+            type: "POST",
+            url: "/sortWidgets",
+            data: (sendData),
+            dataType: "json",
+            timeout: 10000, // in milliseconds
+            success: function(data) {
+                closeSpinner();
+                if(data.code){
+                    showMessage("Error",data.message);
+                }
+                else{
+                    // showMessage("Success",data.message);
+                    loadDashboard();
+                }
+
+            },
+            error: function(request, status, err) {
+                if(status == "timeout") {
+                    closeSpinner();
+                    showMessage("Error","Timeout");
+                }
+                else{
+                    closeSpinner();
+                    showMessage("Error Response",status);
+                }
+            }
+        });
+    }
+</script>
+
+<div id="id_sidebar" class=" sidebar unselectable">
+
+    <br><br>
+
+    <div id="sidebar_menu_Dashboard" class="sidebar-menu-selected" onClick="currentView='Dashboard';loadDashboard()">
+        <div class="sidebar-menu-text">
+            <i class="fa fa-pie-chart" aria-hidden="true"></i>
+            <div class="sidebar-menu-text-text">&nbsp;&nbsp;Dashboard</div>
+        </div>
+    </div>
+
+    <div id="sidebar_menu_Settings" class="sidebar-menu" onClick="displayTile('Settings')">
+        <div class="sidebar-menu-text">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <div class="sidebar-menu-text-text">&nbsp;&nbsp;Settings</div>
+        </div>
+    </div>
+
+    {{#ifuserTypeSuperUser userType}}
+        <div id="sidebar_menu_Users" class="sidebar-menu" onClick="displayTile('Users')">
+            <div class="sidebar-menu-text">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <div class="sidebar-menu-text-text">&nbsp;&nbsp;Users</div>
+            </div>
+        </div>
+    {{/ifuserTypeSuperUser}}
+
+    <span id="id_sidebarToggleButton">
+    <div class="toggle">
+        <input id="id_toggleWidgetSort" type="checkbox" class="check" onchange = toggleSort(this)>
+        <b class="b switch"></b>
+        <b class="b track"></b>
+    </div><p class="toggle-text">Rearrange</p>
+    </span>
+
+</div>

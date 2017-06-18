@@ -1,0 +1,36 @@
+
+{{#each val}}
+{{#ifindexEqTile ../tileName @index }}
+    <div class="tile tile-{{status}} tile-large unselectable " id = "{{../tileID}}">
+        <div class="tile-title-small">
+         {{../tileTitle}}
+        </div>
+
+        <div class="tile-content">
+
+            <div class="tablestyle2">
+                <table style="font-size:11px;">
+                    {{#each buildList}}
+                    <tr class="{{status}}">
+                        <td>
+                            <a href='{{link}}' class="tileAnchor">{{no}} </a><br>
+                            {{time}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+
+          <div id="chart" align="center" style="margin-top:25px;width:70%;">
+            <div class="chartTextHeader" >{{buildName}}</div><br>
+            <div class="chartTextHeader">{{result}}</div><br>
+            <!--<div class="chartTextLegend">{{result_detail}}</div><br>-->
+            <div class="chartTextHeader">{{latest_build}}</div><br><br>
+            <div class="chartTextLegend"><a href='{{build_link}}' class="tileAnchor">Check in Bamboo</a></div>
+            <div class="chartDimText">Last Updated: {{lastUpdated}}  </div>
+          </div>
+
+        </div>
+    </div>
+{{/ifindexEqTile}}
+{{/each}}

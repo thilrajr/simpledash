@@ -1,0 +1,100 @@
+// out: ../../public/css/common/sidebar.css, compress: true, sourceMap: false
+
+@import "../base";
+@menu_height: 50px;
+.sidebar {
+    position: fixed;
+    top:55px;
+    bottom: 0px;
+    width: 230px;
+    float: left;
+    background-color: @sidebar_background;
+    color: @sidebar_fontColor;
+    z-index: 105;
+    border-right: 3px rgba(0,0,0,.3) double;
+    @media @smartphones {
+        visibility: hidden;
+	}
+    @media @tablets {
+        visibility: hidden;
+	}
+}
+.sidebar-menu {
+    min-height: @menu_height;
+    background-color: rgba(0,0,0,.1);
+    border: 1px rgba(0,0,0,.3) solid;
+    cursor:pointer;
+    margin: 0px 5px 3px 5px;
+    border-radius: 3px;
+    padding-bottom: 5px;
+}
+
+.sidebar-menu-selected {
+    min-height: @menu_height;
+    background-color: rgba(0,0,0,.1);
+    cursor:pointer;
+    margin: 0px 0px 3px 0px;
+    padding-bottom: 5px;
+    border-top: 1px rgba(0,0,0,.3) solid;
+    border-bottom: 1px rgba(0,0,0,.3) solid;
+}
+.sidebar-menu:hover {
+    background-color: rgba(0,0,0,.2);
+    border-width: 0 0 0 5px;
+    border-style:solid;
+    border-color: rgba(0,0,0,.5);
+    //cursor:pointer;
+}
+.sidebar-menu-selected:hover {
+    background-color: rgba(0,0,0,.05);
+    //border-width: 0 0 0 5px;
+    //border-style:solid;
+    border-color: rgba(0,0,0,.3);
+    //cursor:pointer;
+}
+.sidebar-menu-text {
+    .font_sidebar;
+    position: relative;
+    top: ((@menu_height / 100px) * 33px);
+    left: 0;
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+.sidebar-submenu-text {
+    .font_sidebar;
+    position: relative;
+    top: 5px;
+    left: 15px;
+    padding-bottom: 5px;
+}
+.sidebar-menu-text-text {
+    display: inline
+}
+//.sidebar-menu:hover .submenu {
+//    display: block;
+//    max-height: 250px;
+//}
+.sidebar-menu-selected .submenu {
+    display: block;
+    max-height: 250px;
+}
+
+/* hover behaviour for links inside .submenu */
+.submenu:hover {
+    border: 1px rgba(0,0,0,.5) solid;
+}
+
+/* this is the initial state of all submenus.
+  we set it to max-height: 0, and hide the overflowed content.
+*/
+.submenu {
+    display:none;
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+    padding: 3px 1px 3px 1px;
+    cursor:pointer;
+    margin: 0px 5px 3px 40px;
+    border-radius: 3px;
+    border: 1px rgba(0,0,0,.3) solid;
+}

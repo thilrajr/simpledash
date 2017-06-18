@@ -1,0 +1,53 @@
+.message {
+    height: 200px;
+    width: 400px;
+    background-color: #6D6B6D;
+    visibility: hidden;
+    border: 2px rgba(0,0,0,0.5) solid;
+    border-radius: 5px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.8);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    margin: auto;
+}
+
+.message-content {
+    padding-bottom: 2px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.message-title {
+    background-color: rgba(0,0,0,.3);
+    font-size: 24px;
+    padding-left: 10px;
+    padding-top: 3px;
+    opacity: 0.8;
+    color: #FFFFFF;
+    height:30px;
+    width:100%;
+}
+.message-bar {
+    opacity: 0.5;
+    color: #FFFFFF;
+    height:auto;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.80;
+    background: #aaa;
+    z-index: 10;
+    display: none;
+}

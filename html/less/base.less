@@ -1,0 +1,145 @@
+// out: false, compress: true, sourceMap: false
+@tablets: ~"screen and (min-width: 501px) and (max-width: 750px)";
+@smartphones: ~"screen and (max-width: 500px)";
+@desktop: ~"screen and (min-width: 751px)";
+//Base colors
+@darkColor: #000000;
+@failColor: rgba(255, 119, 73, 0.71);
+@passColor: rgba(61, 224, 94, 0.71);
+
+@fontColor: #4f6f8a;
+
+@main_background: #fcffff;
+@main_fontColor: @fontColor;
+
+@login_background: #fcffff;
+@login_fontColor: @fontColor;
+
+@mainHeader_baseColor: #445966;
+@mainHeader__background: #bbc4d0;
+
+@sidebar_background: @main_background;
+@sidebar_fontColor: @fontColor;
+
+@settings_background: #f4f4f4;
+@settings_fontColor: @fontColor;
+
+@tile_fontColor: #6c83a9;
+@tile_backgroundColor: rgb(255, 254, 253);
+
+@spinner_color: #939393;
+
+@popup_fontColor: @main_fontColor;
+@popup_backgroundColor: @main_background;
+@popup_cover: #7a7a7a;
+
+@downloadButton_color: #2b7699;
+@downloadButton_fontColor: #f5f5f5;
+
+//Base css
+.shadow1 {
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+
+.shadow_small {
+  box-shadow: 0 2px 3px -2px rgba(0,0,0,0.4);
+}
+
+.shadow2 {
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.8);
+}
+
+.shadow_verticalSmall(@shadowColor: #a5a5a5) {
+  box-shadow: 0 2px 4px -2px @shadowColor;
+}
+
+.color_shade1(@background_color) {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d3d3d3+0,f1f1f1+35,e1e1e1+54,f6f6f6+77,e0e0e0+100 */
+  background: @background_color; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  darken(@background_color,10%) 0%, fade(@background_color,5%)  35%, darken(@background_color,5%)  54%, lighten(@background_color,1%)  77%, darken(@background_color,5%)  100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  darken(@background_color,10%) 0%, fade(@background_color,5%)  35%, darken(@background_color,5%)  54%, lighten(@background_color,1%)  77%, darken(@background_color,5%) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  darken(@background_color,10%) 0%, fade(@background_color,5%)  35%, darken(@background_color,5%)  54%, lighten(@background_color,1%)  77%, darken(@background_color,5%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=darken(@background_color,20%), endColorstr=@background_color,10%,GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.color_shade2(@background_color) {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d3d3d3+0,f1f1f1+35,e1e1e1+54,f6f6f6+77,e0e0e0+100 */
+  background: @background_color; /* Old browsers */
+  //background: -moz-linear-gradient(-45deg,  darken(@background_color,25%) 0%, lighten(@background_color,40%)  35%, darken(@background_color,15%)  54%, lighten(@background_color,10%)  77%, darken(@background_color,5%)  100%); /* FF3.6-15 */
+  //background: -webkit-linear-gradient(-45deg,  darken(@background_color,25%) 0%, lighten(@background_color,40%)  35%, darken(@background_color,15%)  54%, lighten(@background_color,10%)  77%, darken(@background_color,5%) 100%); /* Chrome10-25,Safari5.1-6 */
+  //background: linear-gradient(135deg,  darken(@background_color,25%) 0%, lighten(@background_color,40%)  35%, darken(@background_color,15%)  54%, lighten(@background_color,10%)  77%, darken(@background_color,5%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=darken(@background_color,20%), endColorstr=lighten(@background_color,20%),10%,GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.font_small {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+}
+
+.font_heading, .font_sidebar {
+  font-family: 'FreeSans', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.font_settings {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.font_tileHeading {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+}
+
+.font_tileSeparatorHeading {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+}
+
+.font_bigMessage {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  font-style: normal;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.font_tileContent {
+  .font_small;
+}
+
+.sidebar_border {
+  border-right: 1px rgba(0, 0, 0, 0.14) ridge;
+  .shadow1;
+}
+
+//Widgets
+
+@defectSummaryTile_fontColor: @tile_fontColor;
+.defectSummaryTile_fontStyle
+{
+  .font_small;
+}
+
+@bambooBuildTile_fontColor: @tile_fontColor;
+@bambooBuildTile_colorFail: @failColor;
+@bambooBuildTile_colorPass: @passColor;
+
+@tile_headerFail: @failColor;
+@tile_headerPass: @passColor;
+
+@codeQualityTile_fontColor: @tile_fontColor;
+@codeQualityTile_backgroundColor: @main_background;
+.codeQualityTile_fontStyle
+{
+  .font_small;
+}

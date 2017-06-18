@@ -1,0 +1,48 @@
+  <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; }
+  </style>
+
+  <script>
+  $( function() {
+    $( ".sort_widget" ).sortable();
+    $( ".sort_widget" ).disableSelection();
+    $( ".sort_widget" ).sortable( "disable" );
+  } );
+  </script>
+  
+<div class="main-tile visible" id={{tileID}}>
+  <div class="sort_widget" id="id_dashboardWidgets">
+  {{#each myTiles}}
+    {{#ifbambooBuildTile name}}
+    {{> bambooBuildTile tileID = name val=../buildStatus tileName = name tileTitle = title}}
+    {{/ifbambooBuildTile}}
+    {{#ifbambooBuildDailyStatsTile name}}
+    {{> bambooBuildDailyStatsTile tileID = name val=../buildDailyStatus tileName = name tileTitle = title}}
+    {{/ifbambooBuildDailyStatsTile}}
+    {{#ifbambooTestDailyStatsTile name}}
+    {{> bambooTestDailyStatsTile tileID = name val=../testDailyStatus tileName = name tileTitle = title}}
+    {{/ifbambooTestDailyStatsTile}}
+    {{#ifbugCountTile name}}
+    {{> bugCountTile tileID = name currentProject=../currentProject tileName = name tileTitle = title val= ../totalLoggedDefects}}
+    {{/ifbugCountTile}}
+    {{#ifstoryCountTile name}}
+    {{> bugCountTile tileID = name currentProject=../currentProject tileName = name tileTitle = title val= ../totalStories}}
+    {{/ifstoryCountTile}}
+    {{#ifdefectSummaryTile name}}
+    {{> defectSummaryTile tileID= name tileTitle = title tileName = name val= ../jiraSummary}}
+    {{/ifdefectSummaryTile}}
+    {{#ifcommitDetailsTile name}}
+    {{> commitDetailsTile tileID= name val=../commitDetails tileName = name tileTitle = title }}
+    {{/ifcommitDetailsTile}}
+    {{#ifcodeQualityTile name}}
+    {{> codeQualityTile tileID= name tileTitle = title codeQuality=../codeQuality }}
+    {{/ifcodeQualityTile}}
+    {{#ifdefaultTile name}}
+    {{> defaultTile}}
+    {{/ifdefaultTile}}
+    {{#ifseparatorTile name}}
+    {{> separatorTile tileID = name tileTitle = title}}
+    {{/ifseparatorTile}}
+  {{/each}}
+  </div>
+</div>

@@ -1,0 +1,48 @@
+// out: ../../public/css/widgets/bambooBuildTile.css, compress: true, sourceMap: false
+
+@import "../base";
+
+.tablestyle2 {
+  float:right;
+  width:30%;
+  height:98%;
+  overflow-y: auto;
+}
+
+.tablestyle2 .Failed td{
+  background-color: @bambooBuildTile_colorFail;
+}
+
+.tablestyle2 .Successful td{
+  background-color: @bambooBuildTile_colorPass;
+}
+
+.tablestyle2 .Fail td{
+  background-color: @bambooBuildTile_colorFail;
+}
+
+.tablestyle2 .Success td{
+  background-color: @bambooBuildTile_colorPass;
+}
+
+.tablestyle2 .Pass td{
+  background-color: @bambooBuildTile_colorPass;
+}
+
+.tablestyle2 tr {
+  padding: 2px 2px 2px 2px;
+}
+
+.tablestyle2 td {
+
+  color: darken(@bambooBuildTile_fontColor,30%);
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 4px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 4px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 4px;
+}
+
+.tablestyle2 td:hover {background-color: rgba(0,0,0,0.5);}
+

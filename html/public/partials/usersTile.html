@@ -1,0 +1,200 @@
+<script>
+
+    function addUser()
+    {
+
+        var sendData = {"userName":"",
+                "userDetails": {
+                "password": "admin",
+                "type": "admin",
+                "dashboards": [
+                ]}
+            };
+
+        var e = document.getElementById("id_addUserUserType");
+        var strUser = e.options[e.selectedIndex].value;
+        sendData.userName = document.getElementById("id_addUserName").value;
+        sendData.userDetails.password = document.getElementById("id_addUserPassword").value;
+        sendData.userDetails.type = strUser;
+
+        {{#each dashboardList}}
+            if(document.getElementById("id_addUserCheckbox{{val}}").checked)
+            {
+                sendData.userDetails.dashboards.push({ "name":"{{val}}" });
+            }
+        {{/each}}
+
+        showSpinner("Please wait...",0);
+        $.ajax({
+            type: "POST",
+            url: "/addUser",
+            data: sendData,
+            dataType: "json",
+            timeout: 10000, // in milliseconds
+            success: function(data) {
+                closeSpinner();
+                if(data.code){
+                    showMessage("Error",data.message);
+                }
+                else{
+                    loadUserList();
+                }
+
+            },
+            error: function(request, status, err) {
+                if(status == "timeout") {
+                    closeSpinner();
+                    showMessage("Error","Timeout");
+                }
+                else{
+                    closeSpinner();
+                    showMessage("Error Response",status);
+                }
+            }
+        });
+    }
+
+    function deleteUser(name,pos)
+    {
+        var sendData = {"userName":name};
+        confirmDialog('Are you sure you want to delete?',
+            function() {
+                showSpinner("Please wait...",0);
+                $.ajax({
+                    type: "POST",
+                    url: "/deleteUser",
+                    data: sendData,
+                    dataType: "json",
+                    timeout: 10000, // in milliseconds
+                    success: function(data) {
+                        closeSpinner();
+                        if(data.code){
+                            showMessage("Error",data.message);
+                        }
+                        else{
+                            // showMessage("Success",data.message);
+                            loadUserList();
+                        }
+
+                    },
+                    error: function(request, status, err) {
+                        if(status == "timeout") {
+                            closeSpinner();
+                            showMessage("Error","Timeout");
+                        }
+                        else{
+                            closeSpinner();
+                            showMessage("Error Response",status);
+                        }
+                    }
+                });
+            },
+            function() {
+                // Do Nothing
+            }
+        );
+    }
+
+    function loadUserList()
+    {
+        $.ajax({
+            type: "POST",
+            port: 8092,
+            url: "/getUserList",
+            data: {},
+            dataType: "json",
+            timeout: 10000, // in milliseconds
+            success: function(data) {
+               if(data.code){
+                   showMessage("Error",data.message);
+               }
+               else{
+                    var table = document.getElementById("usersListTable");
+                    while(table.rows.length > 0) {
+                    table.deleteRow(0);
+                    }
+                    for(j=0;j<data.userList.length;j++) {
+                    var row = table.insertRow(j);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var userName = data.userList[j].name;
+                    cell1.width = "30%";
+                    cell2.width = "30%";
+                    cell3.width = "30%";
+                    cell1.innerHTML = "User : " + userName;
+                    cell2.innerHTML = "Type : " + data.userList[j].type;
+                    cell3.innerHTML = "<span class='smallButton' onClick=deleteUser('"+userName+"')><i class='fa fa-times' aria-hidden='true' title='Delete user'></i></span>";
+                }
+               }
+
+            },
+            error: function(request, status, err) {
+               if(status == "timeout") {
+                   closeSpinner();
+                   showMessage("Error","Timeout");
+               }
+               else{
+                   closeSpinner();
+                   showMessage("Error Response",status);
+               }
+            }
+        });
+    }
+
+</script>
+
+<div class="main-tile" style="display:{{tileDisplay}}" id={{tileID}}>
+
+    <div class="tab unselectable" id={{tileID}}Tab>
+        <div id="{{tileID}}TabHUsers" class="tabHeader activeHeader">Users</div>
+    </div>
+
+    <div class="settingsForm font_settings" style="margin-top: 70px;display:block" id={{tileID}}UsersTab>
+        <div id="{{tileID}}UserSettings">
+            <div class="Title unselectable">Users</div>
+            <div class="settingsSmallTile unselectable">
+                <table id="usersListTable" class = "settingsTable backColor" width="98%">
+                </table>
+            </div>
+
+            <div class="settingsSmallTile unselectable" style="border-radius: 0 0 1px 1px;">
+                <table class = "settingsTable" width="98%">
+                    <td><span class="smallButton" onclick="document.getElementById('{{tileID}}AddUser').style.display='block';document.getElementById('{{tileID}}UserSettings').style.display='none'"><i class="fa fa-plus" aria-hidden="true"></i>Add User</span></td>
+                </table>
+            </div>
+        </div>
+
+        <div id="{{tileID}}AddUser" style="display:none">
+            <div class="Title">Add User</div>
+            <br><br>
+                <table id="settingsAddWidgetTable" style="clear:both;" align="center">
+                    <tr><td><label class='font_settings'> User Name </label>
+                    <td><input type='text' id='id_addUserName' style='width:200px' value=''>
+                    <tr><td><label class='font_settings'> Password </label>
+                    <td><input type='password' id='id_addUserPassword' style='width:200px' value=''>
+                    <tr><td><span style="text-align:center">User Type </span><br>
+                    <td><select id="id_addUserUserType" name="addUserUserType" class="custom-select" style="margin-left: 0px;height:25px">
+                        <option value="admin">admin</option>
+                        <option value="user">user</option>
+                    </select>
+                </table>
+            <br>
+            <fieldset>
+                <legend>Select dashboards:</legend>
+                {{#each dashboardList}}
+                    <input id="id_addUserCheckbox{{val}}" type="checkbox" name="addUserCheckbox{{val}}" value="addUserCheckbox{{val}}">
+                    <label for="addUserCheckbox{{val}}" style="font-size: 16px;">{{val}}</label>
+                {{/each}}
+            </fieldset>
+            <br><br><br><br><br>
+            <table width="98%">
+                <input type="button" class="flat_button" style="width:70px" value="Save" onclick="addUser()">&nbsp;&nbsp;
+                <input id="id_addUserCancelButton" type="button" class="flat_button" style="width:70px" value="Cancel" onclick="document.getElementById('{{tileID}}AddUser').style.display='none';document.getElementById('{{tileID}}UserSettings').style.display='block'">
+            </table>
+            <br>
+        </div>
+
+    </div>
+
+</div>

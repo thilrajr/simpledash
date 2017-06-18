@@ -1,0 +1,40 @@
+<script>
+
+    function downloadReport() {
+    var data = {};
+//    showSpinner("Please wait...",25);
+    $.get("/downloadReport", data, function (sendData,status,xhr) {
+
+        if (sendData == 'success') {
+//            closeSpinner();
+//            window.open('/downloadReport');
+        }
+        else {
+//            closeSpinner();
+            showMessage("Message",sendData);
+        }
+    });
+}
+</script>
+<div class="main-tile" style="display:{{tileDisplay}}" id={{tileID}}>
+  {{#each myTiles}}
+    {{#ifbambooBuildTile name}}
+    {{> bambooBuildTile tileID = "id_rbambooBuildTile" val=../buildStatus tileName = name tileTitle = title}}
+    {{/ifbambooBuildTile}}
+    {{#ifbugCountTile name}}
+    {{> bugCountTile tileID = "id_rbugCountTile" tileTitle = title val1= ../totalLoggedDefects.openDefects}}
+    {{/ifbugCountTile}}
+    {{#iffeatureCountTile name}}
+    {{> bugCountTile tileID = "id_rfeatureCountTile" tileTitle = title val1= ../totalLoggedFeatures.totalStories}}
+    {{/iffeatureCountTile}}
+    {{#ifdefectSummaryTile name}}
+    {{> defectSummaryTile tileID="id_rdefectSummaryTile" tileTitle = title ODS= ../jiraSummary }}
+    {{/ifdefectSummaryTile}}
+    {{#ifcommitDetailsTile name}}
+    {{> commitDetailsTile tileID="id_rcommitDetailsTile" tileTitle = title commitVal=../commitDetails }}
+    {{/ifcommitDetailsTile}}
+    {{#ifcodeQualityTile name}}
+    {{> codeQualityTile tileID="id_rcommitDetailsTile" tileTitle = title codeQuality=../codeQuality }}
+    {{/ifcodeQualityTile}}
+  {{/each}}
+</div>

@@ -1,0 +1,34 @@
+{
+  "name": "simpleDash",
+  "version": "1.0.0",
+  "description": "simple agile dashboard",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://thilrajr@bitbucket.org/thilrajr/dashboard.git"
+  },
+  "scripts": {
+    "test": "jshint 'collector.js' 'updateData.js' 'server.js' 'logger.js' && jasmine-node --captureExceptions --junitreport test"
+  },
+  "author": "rajthilak",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chart.js": "^2.5.0",
+    "dot": "^1.0.3",
+    "express": "^4.13.3",
+    "ftp": "^0.3.10",
+    "handlebars": "^4.0.5",
+    "jsonfile": "^2.4.0",
+    "less": "^2.7.2",
+    "line-by-line": "^0.1.5",
+    "lowdb": "^0.15.5",
+    "multer": "^1.2.0",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5",
+    "jshint": "^2.9.4",
+    "standard": "^10.0.2"
+  }
+}

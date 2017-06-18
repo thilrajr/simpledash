@@ -1,0 +1,6 @@
+
+    {{> dashboardTile tileID="id_dashboardTile" myTiles = dashboardTiles.tiles}}
+
+    {{> settingsTile tileID="id_settingsTile" daTiles = dashboardTiles.tiles reTiles = reportTiles.tiles daTemplate = dataTemplate.dataConfig daConfig = dataConfig.tiles tileDisplay = 'none' widgetEnable='block'}}
+
+    {{> usersTile tileID="id_usersTile" daTiles = dashboardTiles.tiles reTiles = reportTiles.tiles daTemplate = dataTemplate.dataConfig daConfig = dataConfig.tiles tileDisplay = 'none' widgetEnable='none'}}

@@ -1,0 +1,131 @@
+<div class="tile tile-white tile-wide unselectable" id="{{tileID}}">
+  <div class="tile-title">
+  {{tileTitle}}
+  </div>
+    <!--<hr class="style1">-->
+  <div class="tile-content" style="padding:2px 2px 2px 2px">
+
+      <table class="tablestyle3" align="center">
+          <tr><th colspan="2">Static Analysis</th></tr>
+          <tr><td>Blocker</td><td>{{codeQuality.staticAnalysis.blocker}}</td></tr>
+          <tr><td>Critical</td><td>{{codeQuality.staticAnalysis.critical}}</td></tr>
+          <tr><td>Major</td><td>{{codeQuality.staticAnalysis.major}}</td></tr>
+          <tr><td>Issues</td><td>{{codeQuality.staticAnalysis.issues}}</td></tr>
+      </table>
+
+      <table class="tablestyle3" align="center">
+          <tr><th colspan="2">Unit Test</th></tr>
+          <tr><td>Success</td><td>{{codeQuality.unitTest.success}}%</td></tr>
+          <tr><td>Failure</td><td>{{codeQuality.unitTest.failure}}</td></tr>
+          <tr><td>Error</td><td>{{codeQuality.unitTest.error}}</td></tr>
+          <tr><td>Test</td><td>{{codeQuality.unitTest.test}}</td></tr>
+      </table>
+
+      <canvas id="{{tileID}}_codeCoverageChart" width="70%" height="30%" class="donutChartStyle"></canvas>
+
+      <script>
+          var ctx = document.getElementById("{{tileID}}_codeCoverageChart").getContext('2d');
+
+          Chart.pluginService.register({
+              afterUpdate: function (chart) {
+                  if (chart.config.options.elements.center) {
+                      var helpers = Chart.helpers;
+                      var centerConfig = chart.config.options.elements.center;
+                      var globalConfig = Chart.defaults.global;
+                      var ctx = chart.chart.ctx;
+
+                      var fontStyle = helpers.getValueOrDefault(centerConfig.fontStyle, globalConfig.defaultFontStyle);
+                      var fontFamily = helpers.getValueOrDefault(centerConfig.fontFamily, globalConfig.defaultFontFamily);
+
+                      if (centerConfig.fontSize)
+                          var fontSize = centerConfig.fontSize;
+                      // figure out the best font size, if one is not specified
+                      else {
+                          ctx.save();
+                          var fontSize = helpers.getValueOrDefault(centerConfig.minFontSize, 1);
+                          var maxFontSize = helpers.getValueOrDefault(centerConfig.maxFontSize, 256);
+                          var maxText = helpers.getValueOrDefault(centerConfig.maxText, centerConfig.text);
+
+                          do {
+                              ctx.font = helpers.fontString(fontSize, fontStyle, fontFamily);
+                              var textWidth = ctx.measureText(maxText).width;
+
+                              // check if it fits, is within configured limits and that we are not simply toggling back and forth
+                              if (textWidth < chart.innerRadius * 2 && fontSize < maxFontSize)
+                                  fontSize += 1;
+                              else {
+                                  // reverse last step
+                                  fontSize -= 1;
+                                  break;
+                              }
+                          } while (true)
+                          ctx.restore();
+                      }
+
+                      // save properties
+                      chart.center = {
+                          font: helpers.fontString(fontSize, fontStyle, fontFamily),
+                          fillStyle: helpers.getValueOrDefault(centerConfig.fontColor, globalConfig.defaultFontColor)
+                      };
+                  }
+              },
+              afterDraw: function (chart) {
+                  if (chart.center) {
+                      var centerConfig = chart.config.options.elements.center;
+                      var ctx = chart.chart.ctx;
+
+                      ctx.save();
+                      ctx.font = chart.center.font;
+                      ctx.fillStyle = chart.center.fillStyle;
+                      ctx.textAlign = 'center';
+                      ctx.textBaseline = 'middle';
+                      var centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                      var centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+                      ctx.fillText(centerConfig.text, centerX, centerY);
+                      ctx.restore();
+                  }
+              },
+          })
+
+          var myChart = new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                  labels: ["Covered", "Not covered"],
+                  datasets: [{
+                      backgroundColor: [
+                          "#3DE05E",
+                          "#FF7749"
+                      ],
+                      data: [{{codeQuality.coverage.lineCoverage}}, 100 - {{codeQuality.coverage.lineCoverage}}]
+          }]
+          },
+          options: {
+              animation: false,
+              cutoutPercentage : 70,
+              legend: {
+                  display: false
+              },
+              tooltips: {enabled: false},
+              elements: {
+                  center: {
+                      // the longest text that could appear in the center
+                      maxText: '100%',
+                              text: '{{codeQuality.coverage.lineCoverage}}%',
+                              fontColor: '#36A2EB',
+                              fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                              fontStyle: 'normal',
+                              // fontSize: 12,
+                              // if a fontSize is NOT specified, we will scale (within the below limits) maxText to take up the maximum space in the center
+                              // if these are not specified either, we default to 1 and 256
+                              minFontSize: 1,
+                              maxFontSize: 35,
+                  }
+              }
+
+          }
+          });
+
+      </script>
+
+  </div>
+</div>

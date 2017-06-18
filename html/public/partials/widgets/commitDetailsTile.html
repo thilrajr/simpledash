@@ -1,0 +1,87 @@
+{{#each val}}
+{{#ifindexEqTile ../tileName @index }}
+<div class="tile tile-white tile-large unselectable" id= "{{../tileID}}">
+
+  <div class="tile-title">
+  {{../tileTitle}}
+  </div>
+  <!--<hr class="style1">-->
+  <div class="tile-content" style="padding:2px 2px 2px 2px">
+    <canvas id="{{../tileName}}_commitDetailsChart" width="100%" height="60%" class="pieChartStyle"></canvas>
+
+    <script>
+      var ctx = document.getElementById("{{../tileName}}_commitDetailsChart").getContext('2d');
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+                  //'Italy', 'UK', 'USA', 'Germany', 'France', 'Japan'
+                  {{#each stats}}
+                  '{{val}}',
+                  {{/each}}
+             ],
+          datasets: [
+            {
+              label: 'commits #',
+              backgroundColor: '#382765',
+              data: [
+                      //2500, 1902, 1041, 610, 1245, 952
+                  {{#each stats}}
+                  '{{commitCount}}',
+                  {{/each}}
+              ]
+            },
+            {
+              label: 'contributors #',
+              backgroundColor: '#7BC225',
+              data: [
+                      //3104, 1689, 1318, 589, 1199, 1436
+                  {{#each stats}}
+                  '{{personCount}}',
+                  {{/each}}
+            ]
+            }
+          ]
+        },
+      options: {
+        responsive: true,
+                legend: {
+          position: 'bottom',
+        },
+        hover: {
+          mode: 'label'
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: false,
+              labelString: 'Month'
+            }
+          }],
+                  yAxes: [{
+            display: true,
+            tickSize: 1,
+            ticks: {
+              beginAtZero: true,
+//              steps: 1,
+//              stepValue: 1,
+//              fixedStepSize: 1,
+              suggestedMax: 5
+            }
+          }]
+        },
+        title: {
+          display: false,
+                  text: 'Chart.js Line Chart - Legend'
+        }
+      }
+      });
+
+    </script>
+  </div>
+</div>
+
+{{/ifindexEqTile}}
+{{/each}}

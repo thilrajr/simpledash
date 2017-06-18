@@ -1,0 +1,295 @@
+// out: ../../public/css/common/tile.css, compress: true, sourceMap: false
+
+@import "../base";
+@tile_borderRadius: 3px;
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+.tile {
+    margin: 2px 2px 2px 2px;
+    text-align: center;
+    opacity: 0.92;
+    z-index: 1;
+    border: 1px rgba(0,0,0,0.2) solid;
+    border-radius: @tile_borderRadius;
+    float: left;
+    color: @tile_fontColor;
+    background-color: @tile_backgroundColor;
+}
+
+.tile hr.style1{
+    border-top: 1px solid fade(@darkColor,30%);
+    margin-top: 0;
+    width: 80%;
+}
+
+.tileAnchor{
+    color: darken(@tile_fontColor,25%);
+}
+.tile .tile-title {
+    border-radius: @tile_borderRadius @tile_borderRadius 0 0;
+    //background-color: darken(@tile_backgroundColor,5%);
+    height:45px;
+    .font_tileHeading;
+    .shadow_verticalSmall(#c5c5c5);
+    padding-top: 10px;
+    //.color_shade1(@tile_backgroundColor);
+}
+
+.tile .tile-content {
+    display: block;
+    .font_tileContent;
+    margin-left: 0;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height:80%;
+}
+
+.tile:hover {
+  opacity: 1;
+}
+
+.tile-Successful .tile-title-small {
+    //background-color: fade(@tile_headerPass,30%);
+    .color_shade2(fade(@tile_headerPass,20%));
+    .font_tileHeading;
+    color: @tile_fontColor;
+    height:45px;
+    .shadow_verticalSmall;
+}
+.tile-Failed .tile-title-small {
+    //background-color: fade(@tile_headerFail,30%);
+    .color_shade2(fade(@tile_headerFail,20%));
+    .font_tileHeading;
+    color: @tile_fontColor;
+    height:45px;
+    .shadow_verticalSmall;
+}
+.tile-Success .tile-title-small {
+    //background-color: fade(@tile_headerPass,30%);
+    .color_shade2(fade(@tile_headerPass,20%));
+    .font_tileHeading;
+    color: @tile_fontColor;
+    height:45px;
+    .shadow_verticalSmall;
+}
+.tile-Fail .tile-title-small {
+    //background-color: fade(@tile_headerFail,30%);
+    .color_shade2(fade(@tile_headerFail,20%));
+    .font_tileHeading;
+    color: @tile_fontColor;
+    height:45px;
+    .shadow_verticalSmall;
+}
+
+.separatorTile {
+    margin: 10px 2px 5px 2px;
+    text-align: center;
+    z-index: 2;
+    float: left;
+    color: #2B7699;
+    width:98.5%;
+    height:45px;
+    border: 1px rgba(0,0,0,0.2) solid;
+    // .shadow_verticalSmall;
+    border-radius: 3px;
+    //border-top-right-radius: 5px;
+    //border-top-left-radius: 5px;
+    background-color: rgba(108, 131, 169, 0.09);
+}
+
+.separatorTile .separatorTitle {
+    z-index: 1;
+    .font_tileSeparatorHeading;
+    display:inline-block;
+    position: relative;
+    top:2px;
+    //background-color: rgba(0,0,0,0.05);
+    border-radius: 5px;
+    //border-top-right-radius: 5px;
+    padding: 0 5px 0 5px;
+    margin-left: 5px;
+    //background-color: rgb(81, 142, 218);
+    //background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.3) 35px, rgba(255,255,255,.3) 70px);
+    //.shadow_verticalSmall;
+}
+
+@media all and (min-width: 330px) and (max-width: 639px) {
+    .tile.tile-large {
+        height: 270px;
+        width: 97%;
+        min-width: 270px;
+        /*max-width: 350px;*/
+    }
+
+    .tile.tile-wide {
+        height: 270px;
+        width: 97%;
+    }
+
+    .tile .tile-content .pieChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tile .tile-content .donutChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 80%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media all and (min-width: 640px) and (max-width: 779px) {
+    .tile.tile-large {
+        height: 270px;
+        width: 99%;
+        min-width: 270px;
+        /*max-width: 350px;*/
+    }
+
+    .tile.tile-wide {
+        height: 270px;
+        width: 99%;
+    }
+
+    .tile .tile-content .pieChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tile .tile-content .donutChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 80%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+@media all and (min-width: 780px) and (max-width: 1079px) {
+    .tile.tile-large {
+        height: 270px;
+        width: 49%;
+        min-width: 260px;
+        /*max-width: 350px;*/
+    }
+
+    .tile.tile-wide {
+        height: 270px;
+        width: 99%;
+    }
+
+    .tile .tile-content .pieChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tile .tile-content .donutChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 80%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media all and (min-width: 1080px) {
+    .tile.tile-large {
+        height: 270px;
+        width: 32.6%;
+        min-width: 270px;
+        /*max-width: 350px;*/
+    }
+
+    .tile.tile-wide {
+        height: 270px;
+        width: 65.5%;
+    }
+
+    .tile .tile-content .pieChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tile .tile-content .donutChartStyle {
+        max-height:200px;
+        max-width:370px;
+        position:absolute;
+        top: 40%;
+        left: 80%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.tile-showSidebarImg {
+  float:right;
+  position: fixed;
+  opacity: 0.75;
+  top: 10px;
+  z-index: 2;
+}
+
+.homePageStyle {
+  margin:0px;
+
+}
+
+/*Tiles for settings page*/
+
+.settingsSmallTile {
+    //opacity: 0.6;
+    color: @main_fontColor;
+    font-size: 23px;
+    margin: 2px 0 2px 0;
+    padding: 3px 0 3px 0;
+}
+
+.settingsSmallTile .settingsTable {
+    margin-left: 10px;
+    left: 33%;
+    border-collapse: collapse;
+    .font_settings;
+}
+
+.settingsSmallTile .settingsTable td {
+    text-align: center;
+    height: 40px;
+    border-bottom: 3px solid @settings_background;
+}
+
+.settingsSmallTile .backColor {
+    background-color: rgba(0, 0, 0, 0.04);
+}

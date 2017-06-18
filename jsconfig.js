@@ -1,0 +1,6 @@
+{
+    "include": [
+        "*",
+        "html/public/**/*"
+    ]
+}

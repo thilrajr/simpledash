@@ -1,0 +1,68 @@
+<html>
+<head>
+    {{#ifuserTypeAdmin userType}}
+        <link rel="stylesheet" href="css/common/home_admin.css">
+    {{/ifuserTypeAdmin}}
+    {{#ifuserTypeUser userType}}
+    <link rel="stylesheet" href="css/common/home_user.css">
+    {{/ifuserTypeUser}}
+    <link rel="stylesheet" href="css/common/popup.css">
+    <link rel="stylesheet" href="css/common/shared.css">
+    <link rel="stylesheet" href="css/common/sidebar.css">
+    <link rel="stylesheet" href="css/common/tile.css">
+    <link rel="stylesheet" href="css/common/tab.css">
+    <link rel="stylesheet" href="css/custom_checkbox.css">
+    <link rel="stylesheet" href="css/widgets/bambooBuildTile.css">
+    <link rel="stylesheet" href="css/widgets/codeQualityTile.css">
+    <link rel="stylesheet" href="css/widgets/defectSummaryTile.css">
+
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/gif" href="icon/dashboard.png" />
+    <link rel="stylesheet" href="chartist/dist/chartist.min.css">
+    <script src="chartist/dist/chartist.min.js"></script>
+    <script src="chart.js/dist/Chart.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/common.js"></script>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<title> simpleDash </title>
+</head>
+<body class="homePageStyle">
+    <div class="main-header unselectable" id="main_header">
+        <select id="id_selectDashboard" class="custom-select" onchange="loadDashboard()">
+            <option value="selectDashboard">Select Dashboard</option>
+            {{#each dashboardList}}
+            <option value="{{val}}">{{val}}</option>
+            {{/each}}
+        </select>
+        <span class="responsive_showInMobileScreen" >
+            <span id="id_main_header_logoutIcon" style="float:right;margin-right: 10px;margin-top:2px"> 
+                <a href="/" title="Logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            </span>
+            <br><hr style="margin: 5px 0 5px 0;border-top: 1px solid lightgray">
+        </span>
+        <span class="responsive_hideInSmallScreen">
+            <span id="id_main_header_title" >Dashboard - Select</span>
+        </span>
+        <span id="id_main_header_project" ></span>
+        <div id="main_header_icons" style="float:right;margin-right: 10px;margin-top:2px">
+            <span id="id_widgetSortButton" class="responsive_hideInSmallScreen" style="visibility:hidden;">
+                <button class="flat_button" style="width:60px;" onclick="saveSortedWidgets()">Save</button>
+            </span>
+            <span id="id_main_header_fullScreenIcon" class="responsive_hideInSmallScreen" onclick="toggleFullScreen()" title="Full Screen" style="cursor:pointer"><i class="fa fa-expand" aria-hidden="true"></i></span>
+            <span id="id_main_header_refreshIcon" class="responsive_hideInSmallScreen" onclick="loadDashboard()" title="Refresh" style="cursor:pointer"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+            <span id="id_main_header_logoutIcon" class="responsive_hideInMobileScreen"> <a href="/" title="Logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></span>
+        </div>
+    </div>
+
+    {{#ifuserTypeAdmin userType}}
+        {{> sidebarTile title="Menu"}}
+    {{/ifuserTypeAdmin}}
+
+    <div id="id_dashboardTileContent">
+        {{> defaultMainTile}}
+    </div>
+    {{> popupTile tileID="id_spinnerTile"}}
+
+</body>
+</html>

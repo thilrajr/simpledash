@@ -1,0 +1,31 @@
+{{#each val}}
+{{#ifindexEqTile ../tileName @index }}
+    <div class="tile tile-white tile-wide unselectable" id="{{../tileID}}">
+      <div class="tile-title">
+      {{../tileTitle}}
+      </div>
+        <!--<hr class="style1">-->
+      <div class="tile-content">
+          <table class="tablestyle1" align="center">
+
+              <tbody>
+                <th style="width:5%">S.No.</th>
+                <th style="width:10%">Key</th>
+                <th style="width:10%">Priority</th>
+                <th style="width:60%">Summary</th>
+                <th style="width:15%">Phase</th>
+
+              {{#each list}}
+              <tr>
+                {{#row}}
+                <td>{{val}}
+                {{/row}}
+              </tr>
+              {{/each}}
+            </tbody>
+
+          </table>
+      </div>
+    </div>
+{{/ifindexEqTile}}
+{{/each}}

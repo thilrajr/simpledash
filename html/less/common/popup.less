@@ -1,0 +1,92 @@
+// out: ../../public/css/common/popup.css, compress: true, sourceMap: false
+
+@import "../base";
+.popup {
+    height: 200px;
+    width: 400px;
+    background-color: @popup_backgroundColor;
+    visibility: hidden;
+    border: 1px rgba(0,0,0,.4) solid;
+    border-radius: 2px;
+    .shadow2;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 201;
+    margin: auto;
+}
+
+.popup-title {
+    background-color: rgba(0,0,0,0.1);
+    .font_tileHeading;
+    font-size: 24px;
+    padding-left: 10px;
+    padding-top: 3px;
+    color: @popup_fontColor;
+    height:30px;
+    width:100%;
+}
+
+.popup-message {
+    color: @popup_fontColor;
+    height:auto;
+    .font_settings;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.center{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    margin: auto;
+}
+
+.spinnerTile {
+    height: 170px;
+    width: 170px;
+    display: inline-block;
+    background-color: @main_background;
+    color: @main_fontColor;
+    visibility: hidden;
+    border: 0.5px rgba(0,0,0,0.5) solid;
+    border-radius: 5px;
+    .shadow_small;
+    position: absolute;
+    z-index: 305;
+}
+
+.spinner{
+    width: 160px;
+    height: 160px;
+
+    border: 5px solid #f3f3f3;
+    border-top:5px solid #f25a41;
+    border-radius: 100%;
+
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }to{
+         transform: rotate(360deg);
+     }
+}
+
+#cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.80;
+    background: @popup_cover;
+    z-index: 200;
+    display: none;
+}

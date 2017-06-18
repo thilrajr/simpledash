@@ -1,0 +1,26 @@
+.shadow1 {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+.shadow2 {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+}
+.font_small {
+  font-family: 'FreeSans';
+  font-weight: 500;
+  font-style: normal;
+}
+.font_heading {
+  font-family: 'FreeSans';
+  font-weight: 500;
+  font-style: normal;
+}
+.font_title1 {
+  font-family: 'FreeSans';
+  font-weight: 500;
+  font-style: normal;
+}
+.font_sidebar {
+  font-family: 'FreeSans';
+  font-weight: 500;
+  font-style: normal;
+}

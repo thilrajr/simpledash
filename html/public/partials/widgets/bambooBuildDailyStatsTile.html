@@ -1,0 +1,52 @@
+
+{{#each val}}
+{{#ifindexEqTile ../tileName @index }}
+  <div class="tile tile-white tile-large unselectable" id= "{{../tileID}}">
+
+    <div class="tile-title">
+    {{../tileTitle}}
+    </div>
+
+      <div class="tile-content" style="padding:2px 2px 2px 2px">
+
+        <canvas id="{{../tileID}}_commitDetailsChart{{@index}}" width="100%" height="60%" class="pieChartStyle"></canvas>
+
+        <script>
+          var ctx = document.getElementById("{{../tileID}}_commitDetailsChart{{@index}}").getContext('2d');
+
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: [
+                      {{#each buildList}}
+                      '{{date}}',
+                      {{/each}}
+                 ],
+              datasets: [
+                {
+                  label: 'Fail #',
+                  backgroundColor: 'rgba(255, 119, 73, 0.5)',
+                  data: [
+                    {{#each buildList}}
+                    '{{fail}}',
+                    {{/each}}
+                  ]
+                },
+                {
+                  label: 'Pass #',
+                  backgroundColor: 'rgba(61, 224, 94, 0.5)',
+                  data: [
+                      {{#each buildList}}
+                      '{{pass}}',
+                      {{/each}}
+                  ]
+                }
+              ]
+            },
+
+          });
+        </script>
+    </div>
+  </div>
+{{/ifindexEqTile}}
+{{/each}}

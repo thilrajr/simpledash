@@ -1,0 +1,42 @@
+// out: ../../public/css/widgets/defectSummaryTile.css, compress: true, sourceMap: false
+
+@import "../base";
+
+.tablestyle1 {
+  .defectSummaryTile_fontStyle;
+  border-collapse: collapse;
+  margin:0;
+  padding:0;
+  width: 100%;
+  position: absolute;
+  top:-5px;
+}
+
+.tablestyle1 td, .tablestyle1 th {
+  border: 0;
+  text-align: left;
+  padding: 3px;
+  color: @defectSummaryTile_fontColor;
+}
+
+.tablestyle1 tr:nth-child(even){background-color: rgba(0,0,0,0.07);}
+
+.tablestyle1 tr:hover {background-color: rgba(0,0,0,0.2);}
+
+.tablestyle1 th {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: rgba(0,0,0,0.2);
+  color: @defectSummaryTile_fontColor;
+}
+
+.tablestyle1 tbody,
+.tablestyle1 thead { display: block; }
+
+.tablestyle1 tbody {
+  padding-bottom: 2px;
+  overflow-y: auto;
+  height:215px;
+  margin-top:-10px;
+  overflow-x: hidden;
+}

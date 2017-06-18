@@ -1,0 +1,40 @@
+{{#each val}}
+{{#ifindexEqTile ../tileName @index }}
+
+<div class="tile tile-white tile-large unselectable" id= "{{../tileID}}">
+
+  <div class="tile-title">
+  {{../tileTitle}}
+  </div>
+  <!--<hr class="style1">-->
+  <div class="tile-content">
+
+    <canvas id="{{../tileID}}_Chart{{@index}}" width="100%" height="60%" class="pieChartStyle"></canvas>
+
+    <script>
+      var ctx = document.getElementById("{{../tileID}}_Chart{{@index}}").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ["{{stats.[0].priority}}: {{stats.[0].count}}", "{{stats.[1].priority}}: {{stats.[1].count}}", "{{stats.[2].priority}}: {{stats.[2].count}}"],
+          datasets: [{
+            backgroundColor: [
+              "#3498db",
+              "#f1c40f",
+              "#e74c3c"
+            ],
+            data: [{{stats.[0].count}}, {{stats.[1].count}}, {{stats.[2].count}}]
+          }]
+        },
+        options: {
+          padding: {left:10, right:10, top:0, bottom:0},
+          tooltips: {enabled: false},
+             responsive: true
+        }
+      });
+    </script>
+  </div>
+</div>
+
+{{/ifindexEqTile}}
+{{/each}}

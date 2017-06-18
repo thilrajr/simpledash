@@ -1,0 +1,107 @@
+
+{{#each val}}
+{{#ifindexEqTile ../tileName @index }}
+  <div class="tile tile-white tile-large unselectable" id= "{{../tileID}}">
+
+    <div class="tile-title">
+    {{../tileTitle}}
+    </div>
+
+      <div class="tile-content" style="padding:2px 2px 2px 2px">
+
+        <canvas id="{{../tileID}}_commitDetailsChart{{@index}}" width="100%" height="60%" class="pieChartStyle"></canvas>
+
+        <script>
+          var ctx = document.getElementById("{{../tileID}}_commitDetailsChart{{@index}}").getContext('2d');
+
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: [
+                      {{#each buildList}}
+                      '{{date}}',
+                      {{/each}}
+                 ],
+              datasets: [
+                {
+                  label: 'Fail #',
+                  backgroundColor: 'rgba(255, 119, 73, 0.5)',
+                  data: [
+                    {{#each buildList}}
+                    '-{{fail}}',
+                    {{/each}}
+                  ]
+                },
+                {
+                  label: 'Pass #',
+                  backgroundColor: 'rgba(61, 224, 94, 0.5)',
+                  data: [
+                      {{#each buildList}}
+                      '{{pass}}',
+                      {{/each}}
+                  ]
+                }
+              ]
+            },
+          options: {
+            responsive: true,
+                    legend: {
+              position: 'bottom',
+            },
+            hover: {
+              mode: 'label'
+            },
+            scales: {
+              xAxes: [{
+                  stacked: true,
+//                display: true,
+//                scaleLabel: {
+//                  display: false,
+//                  labelString: 'Month'
+//                }
+              }],
+                      yAxes: [{
+//                display: true,
+                    stacked: true,
+                tickSize: 1,
+                ticks: {
+                  beginAtZero: true,
+//                  steps: 1,
+//                  stepValue: 1,
+//                  fixedStepSize: 1,
+                  suggestedMax: 5
+                }
+              }]
+            },
+            title: {
+              display: false,
+                      text: 'Chart.js Line Chart - Legend'
+            },
+            animation: {
+              onComplete: function () {
+                var chartInstance = this.chart;
+                var ctx = chartInstance.ctx;
+                console.log(chartInstance);
+                var height = chartInstance.controller.boxes[0].bottom;
+                ctx.textAlign = "center";
+                var checkFail = new Array(this.data.datasets.length);
+                Chart.helpers.each(this.data.datasets.forEach(function (dataset, i) {
+                  var meta = chartInstance.controller.getDatasetMeta(i);
+                  Chart.helpers.each(meta.data.forEach(function (bar, index) {
+                    if(dataset.data[index]==-1&&dataset.label=='Fail #')
+                      checkFail[index] = true;
+                    else if(dataset.label=='Fail #')
+                      checkFail[index] = false;
+                    else if(dataset.data[index]==0&&dataset.label=='Pass #'&&checkFail[index])
+                    ctx.fillText("Failed", bar._model.x, height - ((height - bar._model.y) / 2));
+                  }),this)
+                }),this);
+              }
+            }
+          }
+          });
+        </script>
+    </div>
+  </div>
+{{/ifindexEqTile}}
+{{/each}}

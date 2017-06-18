@@ -1,0 +1,32 @@
+// out: ../../public/css/common/home_admin.css, compress: true, sourceMap: false
+@import (reference) "../base.less";
+
+.homePageStyle {
+  color: @main_fontColor;
+  background-color: @main_background;
+  margin: 0;
+}
+
+.main-tile {
+  margin: 5px 2px 2px 5px;
+  float: right;
+  display: block;
+  position: absolute;
+  left:230px;
+  	@media @tablets {
+		left: 0;
+	}
+   @media @smartphones {
+     top: 105px;
+     left: 0;
+   }
+  top: 55px;
+  right:0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+  color: @main_fontColor;
+  background-color: @main_background;
+
+}

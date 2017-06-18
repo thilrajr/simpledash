@@ -1,0 +1,195 @@
+{
+  "dashboardList": [],
+  "commitDetails": [
+    { "name": "",
+      "stats": [
+        {
+          "val": "",
+          "commitCount": 0,
+          "personCount": 0,
+          "commitNo": [
+            {
+              "val": ""
+            }
+          ],
+          "commitAuthor": [
+            {}
+          ],
+          "uniqueAuthor": [
+            {}
+          ],
+          "commitMessage": [
+            {
+              "val": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totalLoggedDefects": [
+    {"stats": [
+      {
+        "priority": "Minor",
+        "count": 0
+      },
+      {
+        "priority": "Medium",
+        "count": 0
+      },
+      {
+        "priority": "High",
+        "count": 0
+      }
+    ]}
+  ],
+  "totalStories": [
+    {"stats": [
+      {
+        "priority": "Open",
+        "count": 0
+      },
+      {
+        "priority": "InProgress",
+        "count": 0
+      },
+      {
+        "priority": "Closed",
+        "count": 0
+      }
+    ]}
+  ],
+  "codeQuality": {
+    "staticAnalysis": {
+      "blocker": "0",
+      "critical": "0",
+      "major": "0",
+      "issues": "0"
+    },
+    "unitTest": {
+      "success": "0.0%",
+      "failure": "0",
+      "error": "0",
+      "test": "0"
+    },
+    "coverage": {
+      "linesOfCode": "0.0%",
+      "lineCoverage": 0.0
+    }
+  },
+  "buildStatus": [
+    {
+      "buildName": "",
+      "shortName": "",
+      "status": "Successful",
+      "result": "",
+      "result_detail": "",
+      "latest_build": "",
+      "build_link": "",
+      "lastUpdated": "",
+      "buildList": [
+        {
+          "no": 0,
+          "time": "",
+          "status": "Successful",
+          "link": ""
+        }
+      ]
+    }
+  ],
+  "buildDailyStatus": [
+    {
+      "buildName": "CCI-IBRUINR",
+      "shortName": "IBR UI Docker - Next Release",
+      "build_link": "http://bamboo.standardbank.co.za:8096/bamboo/browse/CCI-IBRUINR-2995",
+      "lastUpdated": "2017-4-28 15:15:14",
+      "buildList": [
+        {
+          "date": "24 Apr",
+          "pass": 20,
+          "fail": 10
+        },
+        {
+          "date": "25 Apr",
+          "pass": 30,
+          "fail": 5
+        },
+        {
+          "date": "26 Apr",
+          "pass": 50,
+          "fail": 0
+        },
+        {
+          "date": "27 Apr",
+          "pass": 10,
+          "fail": 10
+        },
+        {
+          "date": "28 Apr",
+          "pass": 20,
+          "fail": 10
+        }
+      ]
+    }
+  ],
+  "testDailyStatus": [
+    {
+      "buildName": "CCI-IBRUINR",
+      "shortName": "IBR UI Docker - Next Release",
+      "build_link": "http://bamboo.standardbank.co.za:8096/bamboo/browse/CCI-IBRUINR-2995",
+      "lastUpdated": "2017-4-28 15:15:14",
+      "buildList": [
+        {
+          "date": "24 Apr",
+          "pass": 20,
+          "fail": 10
+        },
+        {
+          "date": "25 Apr",
+          "pass": 30,
+          "fail": 5
+        },
+        {
+          "date": "26 Apr",
+          "pass": 50,
+          "fail": 0
+        },
+        {
+          "date": "27 Apr",
+          "pass": 10,
+          "fail": 10
+        },
+        {
+          "date": "28 Apr",
+          "pass": 20,
+          "fail": 10
+        }
+      ]
+    }
+  ],
+  "jiraSummary": [
+    {
+      "list": [
+        {
+          "row": [
+            {
+              "val": 1
+            },
+            {
+              "val": "-"
+            },
+            {
+              "val": "-"
+            },
+            {
+              "val": ""
+            },
+            {
+              "val": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

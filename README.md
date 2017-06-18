@@ -70,7 +70,7 @@ npm test
 * [Handlebars](http://handlebarsjs.com/) - For creating widgets
 * [ChartJS](http://www.chartjs.org/) - For charts
 * [Fontawsome](http://fontawesome.io/) - For icons
-* [JQuery](http://fontawesome.io/) - For few ui functions
+* [JQuery](https://jquery.com/) - For few ui functions
 
 ## Authors
 

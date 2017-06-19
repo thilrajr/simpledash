@@ -41,7 +41,7 @@ setInterval(updateDatabase , 30*60000);
 
 function updateDatabase()
 {
-    var dashboardList = dashboard.getDashboardList();
+    var dashboardList = dashboard.getDashboardList("admin","admin");
     for (var dCount = 0; dCount < dashboardList.length; dCount++) {
         getData(dashboardList[dCount].val);
     }

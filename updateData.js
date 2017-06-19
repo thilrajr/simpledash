@@ -6,6 +6,7 @@ var UpdateData = function() {
 
     var getRequest;
     var http = require('http');
+    var https = require('https');
     var logger = require('./logger.js');
     var dashPathPrefix = './data/dashboards/';
     var dataFile = "/data.json";
@@ -13,6 +14,7 @@ var UpdateData = function() {
     var low = require('lowdb');
     var dashData;
     var i, j, k;
+    var protocol;
 
     var monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -35,8 +37,20 @@ var UpdateData = function() {
         return 0;
     };
 
+    this.getProtocol = function (url) {
+        if(url.split(":",1).indexOf("https")===0)
+        {
+            return https;
+        }
+        else if(url.split(":",1).indexOf("http")===0)
+        {
+            return http;
+        }
+    }
+
     this.bugCount = function (url, tempVal, prjWidget, currentDashName) {
-        getRequest = http.get(url, function (response) {
+        protocol = module.exports.getProtocol(url);
+        getRequest = protocol.get(url, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -91,7 +105,8 @@ var UpdateData = function() {
     };
 
     this.storyCount = function (url, tempVal, prjWidget, currentDashName) {
-        getRequest = http.get(url, function (response) {
+        protocol = module.exports.getProtocol(url);
+        getRequest = http.get(protocol, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -139,7 +154,8 @@ var UpdateData = function() {
     };
 
     this.bamboo = function (url, tempVal, prjWidget, currentDashName) {
-        getRequest = http.get(url, function (response) {
+        protocol = module.exports.getProtocol(url);
+        getRequest = protocol.get(url, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -193,7 +209,8 @@ var UpdateData = function() {
     };
 
     this.bambooDailyStats = function (url, tempVal, prjWidget, currentDashName) {
-        getRequest = http.get(url, function (response) {
+        protocol = module.exports.getProtocol(url);
+        getRequest = protocol.get(url, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -260,7 +277,8 @@ var UpdateData = function() {
     };
 
     this.bambooTestDailyStats = function (url, tempVal, prjWidget, currentDashName) {
-        getRequest = http.get(url, function (response) {
+        protocol = module.exports.getProtocol(url);
+        getRequest = protocol.get(url, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -326,7 +344,8 @@ var UpdateData = function() {
     };
 
     this.jiraSummary = function (url, tempVal, prjWidget, currentDashName) {
-        getRequest = http.get(url, function (response) {
+        protocol = module.exports.getProtocol(url);
+        getRequest = protocol.get(url, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -370,7 +389,8 @@ var UpdateData = function() {
     };
 
     this.commit = function (commitURL, tempCommitPos, prjWidget, currentDashName) {
-        getRequest = http.get(commitURL, function (response) {
+        protocol = module.exports.getProtocol(commitURL);
+        getRequest = protocol.get(commitURL, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;
@@ -438,6 +458,9 @@ var UpdateData = function() {
                     if (parsed.message) {
                         logger.writeLog(prjWidget, parsed.message + "-" + commitURL);
                     }
+                    else if(parsed.errors[0].message) {
+                        logger.writeLog(prjWidget, parsed.errors[0].message + "-" + commitURL);
+                    }
                     else {
                         logger.writeLog(prjWidget, "Parsing error" + "-" + commitURL);
                     }
@@ -454,7 +477,8 @@ var UpdateData = function() {
             sonarCubeURL += sonarCubeMetrics[i] + ",";
         }
 
-        getRequest = http.get(sonarCubeURL, function (response) {
+        protocol = module.exports.getProtocol(sonarCubeURL);
+        getRequest = protocol.get(sonarCubeURL, function (response) {
             var body = "";
             response.on('data', function (d) {
                 body += d;

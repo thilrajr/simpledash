@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/thilrajr/simpledash.svg?branch=master)](https://travis-ci.org/thilrajr/simpledash)
+[![GitHub release](https://img.shields.io/github/release/thilrajr/simpledash.svg)](https://github.com/thilrajr/simpledash/releases/latest)
+
    <a name="README">[<img src="simpleDash.png" width="300px" />](http://test)</a>
 <hr>
 

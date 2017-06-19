@@ -46,7 +46,7 @@ var UpdateData = function() {
         {
             return http;
         }
-    }
+    };
 
     this.bugCount = function (url, tempVal, prjWidget, currentDashName) {
         protocol = module.exports.getProtocol(url);

@@ -99,70 +99,30 @@
   ],
   "buildDailyStatus": [
     {
-      "buildName": "CCI-IBRUINR",
-      "shortName": "IBR UI Docker - Next Release",
-      "build_link": "http://bamboo.standardbank.co.za:8096/bamboo/browse/CCI-IBRUINR-2995",
-      "lastUpdated": "2017-4-28 15:15:14",
+      "buildName": "",
+      "shortName": "",
+      "build_link": "",
+      "lastUpdated": "",
       "buildList": [
         {
-          "date": "24 Apr",
-          "pass": 20,
-          "fail": 10
-        },
-        {
-          "date": "25 Apr",
-          "pass": 30,
-          "fail": 5
-        },
-        {
-          "date": "26 Apr",
-          "pass": 50,
+          "date": "",
+          "pass": 0,
           "fail": 0
-        },
-        {
-          "date": "27 Apr",
-          "pass": 10,
-          "fail": 10
-        },
-        {
-          "date": "28 Apr",
-          "pass": 20,
-          "fail": 10
         }
       ]
     }
   ],
   "testDailyStatus": [
     {
-      "buildName": "CCI-IBRUINR",
-      "shortName": "IBR UI Docker - Next Release",
-      "build_link": "http://bamboo.standardbank.co.za:8096/bamboo/browse/CCI-IBRUINR-2995",
-      "lastUpdated": "2017-4-28 15:15:14",
+      "buildName": "",
+      "shortName": "",
+      "build_link": "",
+      "lastUpdated": "",
       "buildList": [
         {
-          "date": "24 Apr",
-          "pass": 20,
-          "fail": 10
-        },
-        {
-          "date": "25 Apr",
-          "pass": 30,
-          "fail": 5
-        },
-        {
-          "date": "26 Apr",
-          "pass": 50,
+          "date": "",
+          "pass": 0,
           "fail": 0
-        },
-        {
-          "date": "27 Apr",
-          "pass": 10,
-          "fail": 10
-        },
-        {
-          "date": "28 Apr",
-          "pass": 20,
-          "fail": 10
         }
       ]
     }
